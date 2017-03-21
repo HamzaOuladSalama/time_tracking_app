@@ -27,7 +27,7 @@ class EditableTimerList extends React.Component {
           project='Web Domination'
           elapsed='8986300'
           runningSince={null}
-          editFormOpen={true} 
+          editFormOpen={false} 
         />
        <EditableTimer
           title='Learn extreme ironing'
