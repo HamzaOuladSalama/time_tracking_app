@@ -1,3 +1,7 @@
+/*
+  eslint-disable react/prefer-stateless-function, react/jsx-boolean-value,
+  no-undef, jsx-a11y/label-has-for
+*/
 /*Parent component, TimersDashboard*/
 class TimersDashboard extends React.Component {
   render() {
@@ -6,8 +10,7 @@ class TimersDashboard extends React.Component {
         <div className='column'>
           <EditableTimerList />
           <ToggleableTimerForm 
-            isOpen={true}
-          />
+            isOpen={true} />
         </div>
       </div>
     );
@@ -24,9 +27,16 @@ class EditableTimerList extends React.Component {
           project='Web Domination'
           elapsed='8986300'
           runningSince={null}
+          editFormOpen={true} 
+        />
+       <EditableTimer
+          title='Learn extreme ironing'
+          project='World Domination'
+          elapsed='3890985'
+          runningSince={null}
           editFormOpen={true}
         />
-      </div>  
+      </div> 
     );
   }
 }
@@ -37,8 +47,7 @@ class EditableTimer extends React.Component {
       return (
         <TimerForm
           title={this.props.title}
-          project={this.props.project}
-        />
+          project={this.props.project} />
       );
     } else {
       return (
@@ -46,8 +55,7 @@ class EditableTimer extends React.Component {
           title={this.props.title}
           project={this.props.project}
           elapsed={this.props.elapsed}
-          runningSince={this.props.runningSince}
-        />
+          runningSince={this.props.runningSince} />
       );
     }
   }
