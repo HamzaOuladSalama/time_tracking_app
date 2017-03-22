@@ -34,8 +34,23 @@ class TimersDashboard extends React.Component {
     });
   };
 
-  handleEditFormSubmit = (timer) => {
-  
+  handleEditFormSubmit = (attrs) => {
+    this.updateTimer(attrs)
+  };
+
+  updateTimer = (attrs) => {
+    this.setState({
+      timers: this.state.timers.map((timer) => {
+        if (timer.id === attrs.id) {
+	  return Object.assign({}, timer, {
+	    title: attrs.title,
+	    project: attrs.project,
+	  });
+	} else {
+	  return timer;
+	}
+      }),
+    });
   };
 
   render() {
