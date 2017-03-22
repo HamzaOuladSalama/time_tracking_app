@@ -23,6 +23,21 @@ class TimersDashboard extends React.Component {
     ],
   };
 
+  handleCreateFormSubmit = (timer) => {
+    this.createTimer(timer);
+  };
+
+  createTimer = (timer) => {
+    const t = helpers.newTimer(timer);
+    this.setState({
+	timers: this.state.timers.concat(t),
+    });
+  };
+
+  handleEditFormSubmit = (timer) => {
+  
+  };
+
   render() {
     return (
       <div className='ui three column centered grid'>
@@ -30,7 +45,9 @@ class TimersDashboard extends React.Component {
           <EditableTimerList 
 	    timers={this.state.timers}
 	  />
-          <ToggleableTimerForm />
+          <ToggleableTimerForm 
+	    onFormSubmit={this.handleCreateFormSubmit}
+	  />
         </div>
       </div>
     );
@@ -160,6 +177,9 @@ class ToggleableTimerForm extends React.Component {
   };
 
   handleFormSubmit = (timer) => {
+    // Warning, invokes onFormSubmit and the returned results will not
+    // affect wheter the form is closed or not. Need to add error
+    // handling in case the server returns an unexpected response
     this.props.onFormSubmit(timer);
     this.setState({ isOpen: false });
   };
