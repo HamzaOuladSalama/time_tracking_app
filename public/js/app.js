@@ -116,6 +116,14 @@ class TimerForm extends React.Component {
 }
 
 class ToggleableTimerForm extends React.Component {
+  state = {
+    isOpen: false,
+  };
+
+  handleFormOpen = () => {
+    this.setState({ isOpen: true });
+  };
+
   render () {
     if (this.props.isOpen) {
       return (
