@@ -86,6 +86,10 @@ class EditableTimer extends React.Component {
 }
 
 class TimerForm extends React.Component {
+  state = {
+    title: this.props.title || '',
+    project: this.props.project || '',
+  };
   render() {
     const submitText = this.props.title ? 'Update' : 'Create';
     return (
