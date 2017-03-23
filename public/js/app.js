@@ -101,6 +101,10 @@ class EditableTimer extends React.Component {
     this.openForm();
   };
 
+  handleDeleteClick = (timer) => {
+    this.props.onDeleteClick(timer);
+  };
+
   handleFormClose = () => {
     this.closeForm();
   };
@@ -137,7 +141,8 @@ class EditableTimer extends React.Component {
           project={this.props.project}
           elapsed={this.props.elapsed}
           runningSince={this.props.runningSince}
-	  onEditClick={this.handleEditClick} 
+	  onEditClick={this.handleEditClick}
+	  onDeleteClick={this.handleDeleteClick} 
 	/>
       );
     }
