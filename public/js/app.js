@@ -60,6 +60,7 @@ class TimersDashboard extends React.Component {
           <EditableTimerList 
 	    timers={this.state.timers}
 	    onFormSubmit={this.handleEditFormSubmit}
+	    onDeleteClick={this.props.handleDeleteTimer}
 	  />
           <ToggleableTimerForm 
 	    onFormSubmit={this.handleCreateFormSubmit}
