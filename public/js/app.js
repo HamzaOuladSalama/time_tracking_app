@@ -276,7 +276,9 @@ class Timer extends React.Component {
 	    >
               <i className='edit icon' />
             </span>
-	    <span className='right floated trash icon'>
+	    <span className='right floated trash icon'
+	      onClick={this.props.onDeleteClick}
+	    >
 	      <i className='trash icon' />
 	    </span>
           </div>
