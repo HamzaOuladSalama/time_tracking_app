@@ -63,6 +63,47 @@ class TimersDashboard extends React.Component {
     });
   };
 
+  stopTimer = (timerId) => {
+    const now = Date.now();
+    this.setState({
+      timers: this.state.timers.map((timer) => {
+	if (timer.id === timerId) {
+	  const lastElapsed = now - timer.runningSince;
+	  return Object.assign({}, timer, {
+	    elapsed: timer.elapsed + lastElapsed,
+	    runningSince: null,
+	  });
+	} else {
+	  return timer;
+	}
+      }),
+    });
+  };
+
+  handleStopClick = (timerId) => {
+    this.stopTimer(timerId); 
+  };
+
+  startTimer = (timerId) => {
+    const now = Date.now();
+
+    this.setState({
+      timers: this.state.timers.map((timer) => {
+	if (timer.id === timerId) {
+	  return Object.assign({}, timer, {
+	    runningSince: now, 
+	  });
+	} else {
+	  return timer;
+	}
+      }),
+    });
+  };
+
+  handleStartClick = (timerId) => {
+    this.startTimer(timerId); 
+  };
+
   render() {
     return (
       <div className='ui three column centered grid'>
@@ -71,6 +112,8 @@ class TimersDashboard extends React.Component {
 	    timers={this.state.timers}
 	    onFormSubmit={this.handleEditFormSubmit}
 	    onDeleteClick={this.handleDeleteClick}
+	    onStopClick={this.handleStopClick}
+	    onStartClick={this.handleStartClick}
 	  />
           <ToggleableTimerForm 
 	    onFormSubmit={this.handleCreateFormSubmit}
@@ -94,6 +137,8 @@ class EditableTimerList extends React.Component {
 	runningSince={timer.runningSince}
 	onFormSubmit={this.props.onFormSubmit}
 	onDeleteClick={this.props.onDeleteClick}
+	onStartClick={this.props.onStartClick}
+	onStopClick={this.props.onStopClick}
       />
     ));
     return (
@@ -151,6 +196,8 @@ class EditableTimer extends React.Component {
           runningSince={this.props.runningSince}
 	  onEditClick={this.handleEditClick}
 	  onDeleteClick={this.props.onDeleteClick} 
+	  onStartClick={this.props.onStartClick}
+	  onStopClick={this.props.onStopClick}
 	/>
       );
     }
