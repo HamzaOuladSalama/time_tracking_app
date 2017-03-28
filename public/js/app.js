@@ -268,12 +268,19 @@ class ToggleableTimerForm extends React.Component {
 class Timer extends React.Component {
   componentDidMount() {
     this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
-  }
+  };
 
   componentWillUnmount() {
     clearInterval(this.forceUpdateInterval);
-  }
+  };
 
+  handleStartClick = () => {
+    this.props.onStartClick(this.props.id);
+  };
+
+  handleStopClick = () => {
+    this.props.onStopClick(this.props.id);
+  };
 
   handleDeleteClick = () => {
     this.props.onDeleteClick(this.props.id);
@@ -308,9 +315,10 @@ class Timer extends React.Component {
 	    </span>
           </div>
         </div>
-        <div className='ui bottom attached blue basic button'>
-          Start
-        </div>
+        <TimerActionButton timerIsRunning={!!this.props.runningSince}
+	   onStartClick={this.handleStartClick}
+	   onStopClick={this.handleStopClick}
+	/>
       </div>
     );
   }
